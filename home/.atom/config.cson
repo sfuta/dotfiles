@@ -1,0 +1,25 @@
+"*":
+  "atom-ctags": {}
+  "bracket-matcher":
+    autocompleteBrackets: false
+    autocompleteSmartQuotes: false
+    wrapSelectionsInBrackets: false
+  core:
+    allowPendingPaneItems: false
+    audioBeep: false
+    disabledPackages: [
+      "symbols-view"
+    ]
+    excludeVcsIgnoredPaths: false
+  editor:
+    autoIndentOnPaste: false
+    confirmCheckoutHeadRevision: false
+    fontSize: 15
+    invisibles:
+      tab: "^"
+    showInvisibles: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "c21be4ae-0c2a-f4f6-890c-6e8ceddc7af1"
+  welcome:
+    showOnStartup: false
