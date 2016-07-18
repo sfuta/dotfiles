@@ -4,8 +4,6 @@ if &compatible
 endif
 
 "plugin
-"neocomplete,uniteをインストール予定
-
 "管理
 "no use git (https://github.com/tpope/vim-pathogen)
 "ls ~/.vim/localpluginsで確認
@@ -16,6 +14,9 @@ call dein#begin(expand('~/.vim/bundle'))
 "filer
 call dein#add('kien/ctrlp.vim')
 call dein#add('nixprime/cpsm', {'build': 'bash install.sh'})
+call dein#add('Shougo/unite.vim')
+"補完
+call dein#add('Shougo/neocomplete.vim')
 " Git操作プラグイン
 call dein#add('tpope/vim-fugitive')
 
@@ -189,6 +190,14 @@ function! NetrwMapping()
   noremap <buffer> <C-k> 5k
   noremap <buffer> K $2F<Bar>f "zy0?^<C-R>z [^<Bar>]<CR>
 endfunction
+
+"unite.vim設定
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_max_candidates = 200
+let g:unite_source_grep_recursive_opt = ''
+" unite-grepの便利キーマップ
+vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\
 
 " (あれば)個別設定ファイル読み込み
 let $LOCAL_MYVIMRC=$PWD.'/.localvimrc'

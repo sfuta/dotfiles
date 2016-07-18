@@ -113,5 +113,4 @@ export TERMINFO=~/.terminfo
 ########################################
 # 自作関数群読み込み
 source ~/.mytools/init.sh
-_vim
 source ~/.zshrc.d/zplugin.conf
