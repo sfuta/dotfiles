@@ -62,6 +62,8 @@ set mouse=a    " マウス連携
 set cursorline " カーソルがある場合のハイライトON
 set hlsearch   " 検索文字のハイライトON
 
+set foldmethod=indent " インデントで折り畳み
+
 colorscheme darkblue|colorscheme hybrid
 " 挿入モードの表示設定
 augroup insertmode-colorsheme
