@@ -112,5 +112,11 @@ export TERMINFO=~/.terminfo
 
 ########################################
 # 自作関数群読み込み
-source ~/.mytools/init.sh
+source ~/.mytools/peco/init.sh
+
+#shift+upで親ディレクトリへ
+__cd_up() { builtin cd ..; echo "\r\n"; zle reset-prompt }
+zle -N __cd_up;bindkey '[1;2A' __cd_up
+
+# プラグイン設定
 source ~/.zshrc.d/zplugin.conf
