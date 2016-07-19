@@ -3,6 +3,8 @@
 brew install zsh
 brew install zsh-completions
 brew install zplug
+export ZPLUG_HOME=~/.zplug
+git clone https://github.com/zplug/zplug $ZPLUG_HOME
 
 brew install peco
 brew install tree
