@@ -1,0 +1,6 @@
+[submodule "home/.vim/manage/dein.vim"]
+	path = home/.vim/manage/dein.vim
+	url = https://github.com/Shougo/dein.vim.git
+[submodule "home/.vim/manage/vim-pathogen"]
+	path = home/.vim/manage/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen
