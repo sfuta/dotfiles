@@ -31,30 +31,37 @@ if dein#check_install()
   call dein#install()
 endif
 
-set number
-set nowrap
-set title
-set ruler
-set ambiwidth=double
+set number " 行番号
+set nowrap " 折り返しoff
+set title  " タイトル
+set ruler  " カーソル位置表示
+set ambiwidth=double " マルチバイト文字表示設定
+" インデント設定
 set tabstop=2
 set expandtab
 set shiftwidth=2
-"set smartindent
+set smartindent
+" 特殊文字表示設定
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-set nrformats-=octal
-set hidden
-set history=50
-set virtualedit=block
-set whichwrap=b,s,[,],<,>
-set backspace=indent,eol,start
-set wildmenu
-set display=lastline
+
+set hidden            " バッファー設定(未保存のバッファーがある場合は閉じない)
+set nrformats-=octal  " inc,dec(ctrl-a,ctrl-x)コマンド設定(8進数フォーマットは除去)
+set virtualedit=block " 矩形選択時、文字がない場合も編集可
+set history=50        " コマンドラインの履歴登録数
+set wildmenu          " コマンドラインにて補完候補表示
+set showcmd           " Normalモード等のとき、入力文字を表示
+" 行またぎ時の設定
+set whichwrap=b,s,[,],<,>      " (Leftキー等)キー入力で前/次の行に移動
+set backspace=indent,eol,start " <BS>設定(Insert mode利用可、インデント削除可、行連結可)
+set display=lastline           " 長い行は省略せず表示
+" レジスタとクリップボード連携
 set clipboard+=unnamed
-set mouse=a
-set cursorline
-set hlsearch
-set showcmd
+
+set mouse=a    " マウス連携
+set cursorline " カーソルがある場合のハイライトON
+set hlsearch   " 検索文字のハイライトON
+
 colorscheme darkblue|colorscheme hybrid
 " 挿入モードの表示設定
 augroup insertmode-colorsheme
