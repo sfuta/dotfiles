@@ -105,7 +105,7 @@ function! SwitchRelativeNumber()
   endif
 endfunction
 noremap <C-n> :call SwitchRelativeNumber()<CR>
-nnoremap Z :source ~/.vimrc<CR>
+nnoremap Z :source ~/.vimrc<CR>:noh<CR>:echo 'Reloaded .vimrc!!'<CR>
 nnoremap x "_x
 nnoremap X "_X
 
