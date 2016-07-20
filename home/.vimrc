@@ -7,7 +7,7 @@ endif
 "管理
 "no use git (https://github.com/tpope/vim-pathogen)
 "ls ~/.vim/localpluginsで確認
-execute pathogen#infect('localbundle/{}')
+execute pathogen#infect('localbundle/{}','dev/{}')
 "use git (https://github.com/Shougo/dein.vim)
 call dein#begin(expand('~/.vim/bundle'))
 

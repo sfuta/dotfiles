@@ -1,4 +1,5 @@
 .vagrant
 *.swp
 home/.vim/bundle
+home/.vim/dev
 home/.vim/.netrwhist
