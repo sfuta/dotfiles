@@ -134,17 +134,17 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 set laststatus=2
 set statusline=%<     " 長い時は左から切捨て
 set statusline+=[%n]  " バッファ番号
-set statusline+=%m    " [+](修正中)表示
 set statusline+=%r    " [RO](readonly)表示
 set statusline+=%h    " [Help](helpバッファ)表示
 set statusline+=%w    " previewか？
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " enc,fileformat表示
 set statusline+=%y    " filetype表示
+set statusline+=%m    " [+](修正中)表示
 set statusline+=\     " 
-if winwidth(0) >= 100
-  set statusline+=%F  " フルパス
+if winwidth(0) >= 80
+  set statusline+=%0.40F " フルパス(最大40文字)
 else
-  set statusline+=%t  " ファイル名のみ
+  set statusline+=%t     " ファイル名のみ
 endif
 "右寄せ
 set statusline+=%=\    " 区切り(右寄せ開始)
