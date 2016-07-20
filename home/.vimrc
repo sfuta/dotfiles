@@ -7,7 +7,7 @@ endif
 "管理
 "no use git (https://github.com/tpope/vim-pathogen)
 "ls ~/.vim/localpluginsで確認
-execute pathogen#infect('localbundle/{}','dev/{}')
+execute pathogen#infect('localbundle/{}')
 "use git (https://github.com/Shougo/dein.vim)
 call dein#begin(expand('~/.vim/bundle'))
 
@@ -209,8 +209,12 @@ let g:unite_source_grep_recursive_opt = ''
 " unite-grepの便利キーマップ
 vnoremap /g y:Unite grep::-iRn:<C-R>=escape(@", '\\
 
+let g:is_set_dev_plugin = 0
 " (あれば)個別設定ファイル読み込み
 let $LOCAL_MYVIMRC=$PWD.'/.localvimrc'
 if filereadable($LOCAL_MYVIMRC)
   source $LOCAL_MYVIMRC
+endif
+if g:is_set_dev_plugin
+  execute pathogen#infect('dev/{}')
 endif
