@@ -31,26 +31,19 @@ if dein#check_install()
   call dein#install()
 endif
 
-set number " 行番号
-set nowrap " 折り返しoff
-set title  " タイトル
-set ruler  " カーソル位置表示
-set ambiwidth=double " マルチバイト文字表示設定
-" インデント設定
-set tabstop=2
-set expandtab
-set shiftwidth=2
-set smartindent
+"行番号:ON, 折り返し:OFF, タイトル表示:ON, カーソル位置表示:ON, 全角文字幅:2
+set number nowrap title ruler ambiwidth=double
+" インデント設定(tab幅:2, tab->space, indent幅:2, smartindent:ON
+set tabstop=2 expandtab shiftwidth=2 smartindent
 " 特殊文字表示設定
-set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
-set hidden            " バッファー設定(未保存のバッファーがある場合は閉じない)
-set nrformats-=octal  " inc,dec(ctrl-a,ctrl-x)コマンド設定(8進数フォーマットは除去)
+set hidden            " バッファー設定(未保存でも別バッファ表示可)
+set nrformats-=octal  " inc,dec(ctrl-a,ctrl-x)にて、8進数フォーマット除去
 set virtualedit=block " 矩形選択時、文字がない場合も編集可
 set history=50        " コマンドラインの履歴登録数
 set wildmenu          " コマンドラインにて補完候補表示
-set showcmd           " Normalモード等のとき、入力文字を表示
+set showcmd           " Normalモード等のときの入力文字を表示
 " 行またぎ時の設定
 set whichwrap=b,s,[,],<,>      " (Leftキー等)キー入力で前/次の行に移動
 set backspace=indent,eol,start " <BS>設定(Insert mode利用可、インデント削除可、行連結可)
@@ -59,11 +52,11 @@ set display=lastline           " 長い行は省略せず表示
 set clipboard+=unnamed
 
 set mouse=a    " マウス連携
-set cursorline " カーソルがある場合のハイライトON
+set cursorline " カーソルがある行のハイライトON
 set hlsearch   " 検索文字のハイライトON
 
 set foldmethod=indent " インデントで折り畳み
-set foldlevelstart=99  " 初回は折り畳みなし
+set foldlevelstart=99 " 初回は折り畳みなし
 
 colorscheme darkblue|colorscheme hybrid
 " 挿入モードの表示設定
@@ -87,33 +80,28 @@ hi VertSplit ctermfg=214 guifg=#303030
 
 "keymaps
 ""other
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-nnoremap <Space> <Nop>
-nnoremap Q <Nop>
+nnoremap ZZ <Nop>| nnoremap ZQ <Nop>| nnoremap <Space> <Nop>| nnoremap Q <Nop>
+nnoremap j gj| nnoremap gj j
+nnoremap k gk| nnoremap gk k
 nnoremap Y y$
 nnoremap <CR> o<ESC>
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
+
 function! SwitchRelativeNumber()
   if &relativenumber == 0
-    set nonu|set rnu
+    set nonu rnu
   else 
-    set nu|set nornu
+    set nu nornu
   endif
 endfunction
 noremap <C-n> :call SwitchRelativeNumber()<CR>
+
 nnoremap Z :source ~/.vimrc<CR>:noh<CR>:echo 'Reloaded .vimrc!!'<CR>
-nnoremap x "_x
-nnoremap X "_X
+nnoremap x "_x| nnoremap X "_X
 
 ""バッファー
 nnoremap = :bprevious<CR>
 nnoremap - :bnext<CR>
 nnoremap <Bar> :bf<CR>
-"nnoremap <silent>bl :bl<CR>
 augroup swapchoice-readonly
   autocmd!
   autocmd SwapExists * let v:swapchoice = 'o'
@@ -126,6 +114,7 @@ cnoremap <C-R><C-R> <C-R>"
 ""tab操作
 noremap t gt
 noremap T gT
+""tab色
 hi TabLine term=bold cterm=bold ctermbg=0 ctermfg=0*
 hi TabLineFill term=bold cterm=bold ctermbg=0
 hi TabLineSel term=bold cterm=bold ctermbg=6 ctermfg=0*
@@ -141,33 +130,33 @@ noremap <C-@> @:
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
 "ステータスライン
+"左寄せ
 set laststatus=2
-set statusline=%<     " 行が長すぎるときに切り詰める位置
+set statusline=%<     " 長い時は左から切捨て
 set statusline+=[%n]  " バッファ番号
-set statusline+=%m    " %m 修正フラグ
-set statusline+=%r    " %r 読み込み専用フラグ
-set statusline+=%h    " %h ヘルプバッファフラグ
-set statusline+=%w    " %w プレビューウィンドウフラグ
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencとffを表示
-set statusline+=%y    " バッファ内のファイルのタイプ
-set statusline+=\     " 空白スペース
-if winwidth(0) >= 130
-  set statusline+=%F    " バッファ内のファイルのフルパス
+set statusline+=%m    " [+](修正中)表示
+set statusline+=%r    " [RO](readonly)表示
+set statusline+=%h    " [Help](helpバッファ)表示
+set statusline+=%w    " previewか？
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " enc,fileformat表示
+set statusline+=%y    " filetype表示
+set statusline+=\     " 
+if winwidth(0) >= 100
+  set statusline+=%F  " フルパス
 else
-  set statusline+=%t    " ファイル名のみ
+  set statusline+=%t  " ファイル名のみ
 endif
-set statusline+=%=    " 左寄せ項目と右寄せ項目の区切り
-set statusline+=%{fugitive#statusline()}  " Gitのブランチ名を表示(plugin vim-fugitiveが必要)
-set statusline+=\ \   " 空白スペース2個
-set statusline+=%1l   " 何行目にカーソルがあるか
-set statusline+=/
-set statusline+=%L    " バッファ内の総行数
-set statusline+=,
-set statusline+=%c    " 何列目にカーソルがあるか
-set statusline+=%V    " 画面上の何列目にカーソルがあるか
-set statusline+=\ \   " 空白スペース2個
-set statusline+=%P    " ファイル内の何％の位置にあるか
+"右寄せ
+set statusline+=%=\    " 区切り(右寄せ開始)
+set statusline+=0x%B\  " カーソル下文字コード(16進数)
+set statusline+=%{fugitive#statusline()} " Gitブランチ名表示(plugin vim-fugitiveが必要)
+set statusline+=\ \   " 
+set statusline+=%1l/%L, " [行位置]/[総行数],
+set statusline+=%c%V    " [列位置](-[仮想列位置])
+set statusline+=\ \   " 
+set statusline+=%P    " ファイル位置(%)
 
+"ctrlp.vim設定
 "" 無視検索リスト
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v(^|[\/])(\.git|\.svn|\.vagrant|\.atom|\.settings|node_modules)$',
