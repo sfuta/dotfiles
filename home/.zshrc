@@ -115,8 +115,11 @@ export TERMINFO=~/.terminfo
 source ~/.mytools/peco/init.sh
 
 #shift+upで親ディレクトリへ
-__cd_up() { builtin cd ..; echo "\r\n"; zle reset-prompt }
-zle -N __cd_up;bindkey '[1;2A' __cd_up
+#shift+downで戻る
+__cd_up()   { builtin pushd ..; echo "\r\n"; zle reset-prompt }
+__cd_undo() { builtin popd;     echo "\r\n"; zle reset-prompt }
+zle -N __cd_up;   bindkey '[1;2A' __cd_up
+zle -N __cd_undo; bindkey '[1;2B' __cd_undo
 
 # プラグイン設定
 source ~/.zshrc.d/zplugin.conf
