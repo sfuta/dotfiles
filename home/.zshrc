@@ -53,7 +53,7 @@ autoload -Uz add-zsh-hook
 zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
 zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
 
-function _update_vcs_info_msg() {
+_update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
     RPROMPT="${vcs_info_msg_0_}"
 }
@@ -116,8 +116,8 @@ source ~/.mytools/peco/init.sh
 
 #shift+upで親ディレクトリへ
 #shift+downで戻る
-__cd_up()   { builtin pushd ..; echo "\r\n"; zle reset-prompt }
-__cd_undo() { builtin popd;     echo "\r\n"; zle reset-prompt }
+__cd_up()   { builtin pushd ..; echo ""; _update_vcs_info_msg; zle reset-prompt }
+__cd_undo() { builtin popd;     echo ""; _update_vcs_info_msg; zle reset-prompt }
 zle -N __cd_up;   bindkey '[1;2A' __cd_up
 zle -N __cd_undo; bindkey '[1;2B' __cd_undo
 
