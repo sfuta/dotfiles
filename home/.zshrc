@@ -114,10 +114,17 @@ export TERMINFO=~/.terminfo
 # 自作関数群読み込み
 source ~/.mytools/peco/init.sh
 
+# hook関数precmd実行
+__call_precmds() {
+  type precmd > /dev/null 2>&1
+  for __pre_func in $precmd_functions; do $__pre_func; done
+}
+
 #shift+upで親ディレクトリへ
 #shift+downで戻る
-__cd_up()   { builtin pushd ..; echo ""; _update_vcs_info_msg; zle reset-prompt }
-__cd_undo() { builtin popd;     echo ""; _update_vcs_info_msg; zle reset-prompt }
+__cd_up()   { builtin pushd ..; echo; __call_precmds; zle reset-prompt }
+__cd_undo() { builtin popd;     echo; __call_precmds; zle reset-prompt }
+#zle -N __cd_up;   bindkey '[1;2A' __cd_up
 zle -N __cd_up;   bindkey '[1;2A' __cd_up
 zle -N __cd_undo; bindkey '[1;2B' __cd_undo
 
