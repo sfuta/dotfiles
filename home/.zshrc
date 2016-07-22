@@ -26,11 +26,9 @@ PROMPT="${fg[green]}[%n][20%D %T]${reset_color} %~
 %# "
 
 
-# 単語の区切り文字を指定する
+# 単語区切り文字設定
 autoload -Uz select-word-style
 select-word-style default
-# ここで指定した文字は単語区切りとみなされる
-# / も区切りと扱うので、^W でディレクトリ１つ分を削除できる
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
@@ -124,7 +122,6 @@ __call_precmds() {
 #shift+downで戻る
 __cd_up()   { builtin pushd ..; echo; __call_precmds; zle reset-prompt }
 __cd_undo() { builtin popd;     echo; __call_precmds; zle reset-prompt }
-#zle -N __cd_up;   bindkey '[1;2A' __cd_up
 zle -N __cd_up;   bindkey '[1;2A' __cd_up
 zle -N __cd_undo; bindkey '[1;2B' __cd_undo
 
