@@ -78,6 +78,9 @@ syntax on
 hi LineNr ctermfg=245
 hi VertSplit ctermfg=214 guifg=#303030
 
+"filetype追加
+autocmd BufRead,BufNewFile *.es6 set filetype=javascript
+
 "keymaps
 ""other
 nnoremap ZZ <Nop>| nnoremap ZQ <Nop>| nnoremap <Space> <Nop>| nnoremap Q <Nop>
@@ -204,6 +207,7 @@ let $LOCAL_MYVIMRC=$PWD.'/.localvimrc'
 if filereadable($LOCAL_MYVIMRC)
   source $LOCAL_MYVIMRC
 endif
+" プラグイン開発用ディレクトリ設定
 if g:is_set_dev_plugin
   execute pathogen#infect('dev/{}')
 endif
