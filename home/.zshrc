@@ -114,7 +114,7 @@ source ~/.mytools/peco/init.sh
 
 # hook関数precmd実行
 __call_precmds() {
-  type precmd > /dev/null 2>&1
+  type precmd > /dev/null 2>&1 && precmd
   for __pre_func in $precmd_functions; do $__pre_func; done
 }
 
