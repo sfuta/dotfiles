@@ -1,8 +1,4 @@
 ########################################
-# bash設定の読み込みを追加
-source ~/.bash_profile
-source ~/.bashrc
-
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
