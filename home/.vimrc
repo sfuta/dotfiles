@@ -19,6 +19,8 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neocomplete.vim')
 " Git操作プラグイン
 call dein#add('tpope/vim-fugitive')
+" 日本語化
+call dein#add('vim-jp/vimdoc-ja')
 
 " Example
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' }) " tag指定
