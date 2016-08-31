@@ -130,7 +130,16 @@ nnoremap <C-k> :<C-u>cfirst<CR>
 nnoremap <C-j> :<C-u>clast<CR>
 ""直前のコマンド繰り返し
 noremap <C-@> @:
-"
+
+"" カーソル配下の単語を検索処理よりハイライトする
+function! HighlightWordBySearch__()
+  let l:keepline = winline() - 1
+  exe "normal! *Nzt" . (l:keepline > 0 ? l:keepline . "\<C-y>" : "" )
+  redraw
+  return getreg('/')
+endfunction
+nnoremap # <Esc>:call setreg('/', HighlightWordBySearch__())<CR>
+
 "" add commands
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 
