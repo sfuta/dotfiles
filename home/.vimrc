@@ -134,7 +134,7 @@ noremap <C-@> @:
 "" カーソル配下の単語を検索処理よりハイライトする
 function! HighlightWordBySearch__()
   let l:keepline = winline() - 1
-  exe "normal! *Nzt" . (l:keepline > 0 ? l:keepline . "\<C-y>" : "" )
+  exe "normal! g#Nzt" . (l:keepline > 0 ? l:keepline . "\<C-y>" : "" )
   redraw
   return getreg('/')
 endfunction
