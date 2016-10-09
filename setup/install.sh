@@ -10,6 +10,7 @@ brew install peco
 brew install tree
 brew install the_silver_searcher
 brew install tmux
+brew install reattach-to-user-namespace
 
 brew install ricty
 brew install boost
