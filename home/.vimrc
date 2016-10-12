@@ -90,6 +90,7 @@ nnoremap j gj| nnoremap gj j
 nnoremap k gk| nnoremap gk k
 nnoremap Y y$
 nnoremap <CR> o<ESC>
+nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 function! SwitchRelativeNumber()
   if &relativenumber == 0
