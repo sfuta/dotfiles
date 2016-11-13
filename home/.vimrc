@@ -15,6 +15,8 @@ call dein#begin(expand('~/.vim/bundle'))
 call dein#add('kien/ctrlp.vim')
 call dein#add('nixprime/cpsm', {'build': 'bash install.sh'})
 call dein#add('Shougo/unite.vim')
+" f move
+call dein#add('sfuta/patet_f.vim')
 "補完
 call dein#add('Shougo/neocomplete.vim')
 " Git操作プラグイン
