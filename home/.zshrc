@@ -123,3 +123,6 @@ zle -N __cd_undo; bindkey '[1;2B' __cd_undo
 
 # プラグイン設定
 source ~/.zshrc.d/zplugin.conf
+
+# phpのパス追加
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
