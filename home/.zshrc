@@ -126,3 +126,9 @@ source ~/.zshrc.d/zplugin.conf
 
 # phpのパス追加
 export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+
+
+# rustの設定追加
+export RUSTUP_HOME="${HOME}/workspace/rust/.rustup"
+export CARGO_HOME="${HOME}/workspace/rust/.cargo"
+export PATH="${HOME}/workspace/rust/.cargo/bin:${PATH}"
