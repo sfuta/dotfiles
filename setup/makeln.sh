@@ -13,6 +13,7 @@ __set_dotfiles ()
   if [ -e ~/${dotfilename} ]; then
     mv ~/${dotfilename} ${bkupdir}/
   fi
+  [ -h ${HOME}/${dotfilename} ] && unlink ${HOME}/${dotfilename}
   ln -s `pwd`/${dotfilename} ~/
 }
 
